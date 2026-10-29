@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html din="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - Korean Food Sabil</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e04a6b;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #e04a6b;
+            border-bottom: 2px dashed #ffb1c1;
+            padding-bottom: 5px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 101, 132, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #ffe6eb;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 15px;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .menu-info p {
+            color: #777;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            height: 35px;
+            overflow: hidden;
+        }
+
+        .price-cart {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px 15px 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e04a6b;
+            font-size: 1.1rem;
+        }
+
+        .btn-add {
+            background-color: #ffb1c1;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover {
+            background-color: #ff6584;
+        }
+
+        /* Keranjang & Checkout Section */
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 101, 132, 0.1);
+            margin-top: 40px;
+            border: 1px solid #ffe6eb;
+        }
+
+        @media(max-width: 768px) {
+            .order-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-box h3, .checkout-box h3 {
+            margin-bottom: 20px;
+            color: #e04a6b;
+        }
+
+        .cart-items {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ffe6eb;
+            padding-bottom: 10px;
+            padding-left: 0;
+        }
+
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #e04a6b;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ffb1c1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: #fff9fa;
+            box-sizing: border-box;
+        }
+
+        .btn-proses {
+            display: inline-block;
+            background-color: #ff6584;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-proses:hover {
+            background-color: #e04a6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Daftar Menu</h2>
+
+        <!-- MENU FAVORIT -->
+        <h3 class="section-title">⭐ Menu Paling Favorit</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHSqqXe1sWSJAZhSMOJNpnjEBN5STo6OL7pD57Q1T4g&s=10" alt="Korean Chicken Wings">
+                <div class="menu-info">
+                    <h3>Korean Chicken Wings</h3>
+                    <p>Sayap ayam yang crispy dengan bumbu pedas manis gurih khas Korea.</p>
+                    <span class="favorite-badge">⭐ Favorit</span>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 28.000/3pcs</span>
+                    <button class="btn-add" onclick="addItem('Korean Chicken Wings', 28000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFIGRI3Jbb7wY6o-c8I2mQv7iFecNdyVvmvo7f1W7l42GtiKRKp76LAE8&s=10" alt="Bibimbap">
+                <div class="menu-info">
+                    <h3>Bibimbap Special</h3>
+                    <p>Nasi campur sayuran segar, daging sapi,dan telur mata sapi.</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 35.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('Bibimbap Special', 35000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5MEupJXLtA0NdQQ57A7GHcLbjjg5yYsO7FVum1gDF8Gil03lIT6zUyEQ&s=10" alt="Tteokbokki">
+                <div class="menu-info">
+                    <h3>Tteokbokki Special</h3>
+                    <p>Kue beras kenyal dengan saus gochujang pedas manis di tambah dengan odeng yang lembut</p>
+                    <span class="favorite-badge">⭐ Favorit</span>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 40.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('Tteokbokki Special', 30000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://www.bitesofberi.com/wp-content/uploads/2023/09/rabokki-1.jpg" alt="Rabokki">
+                <div class="menu-info">
+                    <h3>Rabokki</h3>
+                    <p>Kue beras kenyal dengan tambahan mie yang lembut dan diberi saus gochujang pedas manis di tambah lagi dengan odeng yang lembut</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 45.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('Rabokki', 40000)">+ Tambah</button>
+                </div>
+            </div>  
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbR39riSb-7Ngp07kPJNgDNqelhgQ_FyjeBZifRMsOyg&s=10" alt="bungeoppang">
+                <div class="menu-info">
+                    <h3>bungeoppang</h3>
+                    <p>kue berbentuk ikan mas dengan tekstur luar yang renyah dan bagian dalam yang lembut,diisi dengan pasta kacang merah manis</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 25.000/5pcs</span>
+                    <button class="btn-add" onclick="addItem('bungeoppang', 25000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZaX6YAcMKp7mf5mcxxGXdufc09ZYlb1H9UsOC15--8mRB6B4vKOadtGbw&s=10" alt="jajangmyeon">
+                <div class="menu-info">
+                    <h3>jajangmyeon</h3>
+                    <p>mie kenyal khas korea yang disiram dengan saus pasta kacang kedelai hitam yang gurih dengan potongan daging dan sayuran pilihan yang lezat.</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 30.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('jajangmyeon', 30000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLeK1v6ehEWKDFTbq6eeReqVIHMz2p8QgCrsGEy270aw&s=10" alt="kimbap">
+                <div class="menu-info">
+                    <h3>kimbap</h3>
+                    <p>Nasi gulung yang dibalut dengan lembaran rumput laut dan berisi kombinasi isian segar seperti daging sapi, dan aneka sayuran yang lezat</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 35.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('kimbap', 35000)">+ Tambah</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_r46WAPaueAKmeedIF2vix77zyaFoaJusaSSG8i1xJPVUAvcyrtLdbb5c&s=10" alt="japchae">
+                <div class="menu-info">
+                    <h3>japchae</h3>
+                    <p>bihun yang ditumis dengan campuran sayur ditambah dengan potongan daging.</p>
+                </div>
+                <div class="price-cart">
+                    <span class="price">Rp 33.000/porsi</span>
+                    <button class="btn-add" onclick="addItem('japchae', 33000)">+ Tambah</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Keranjang & Form Checkout -->
+        <div class="order-container" id="order">
+            <div class="cart-box">
+                <h3>🛒 Keranjang Belanja Anda</h3>
+                <ul id="cart-list" class="cart-items">
+                    <li>Keranjang masih kosong. Silakan pilih menu di atas.</li>
+                </ul>
+                <div class="cart-total">
+                    <span>Total Pembayaran:</span>
+                    <span id="total-price">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="checkout-box">
+                <h3>📝 Data Pengiriman & Pembayaran</h3>
+                <form onsubmit="checkout(event)">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" placeholder="Contoh: 08123456789" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Lengkap Pengiriman</label>
+                        <textarea id="alamat" rows="3" placeholder="Nama jalan, nomor rumah, RT/RW..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Metode Pembayaran</label>
+                        <select id="pembayaran" required>
+                            <option value="">-- Pilih Metode Pembayaran --</option>
+                            <option value="Transfer BCA">Transfer Bank (BCA)</option>
+                            <option value="QRIS / E-Wallet">QRIS / GoPay / OVO / DANA</option>
+                            <option value="COD (Bayar di Tempat)">COD (Bayar di Tempat)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-proses">Proses Pesanan Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT JAVASCRIPT KERANJANG -->
+    <script>
+        let cart = [];
+
+        function addItem(name, price) {
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name: name, price: price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            let cartList = document.getElementById('cart-list');
+            let totalPriceEl = document.getElementById('total-price');
+            
+            cartList.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li>Keranjang masih kosong. Silakan pilih menu di atas.</li>';
+                totalPriceEl.innerText = 'Rp 0';
+                return;
+            }
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.qty;
+                total += itemTotal;
+                
+                let li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${item.name} (x${item.qty})</span>
+                    <span>Rp ${itemTotal.toLocaleString('id-ID')} <button type="button" onclick="removeItem(${index})" style="background:#ff6584; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer; margin-left:5px;">x</button></span>
+                `;
+                cartList.appendChild(li);
+            });
+
+            totalPriceEl.innerText = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout(event) {
+            event.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Keranjang belanja Anda masih kosong!');
+                return;
+            }
+
+            let nama = document.getElementById('nama').value;
+            let whatsapp = document.getElementById('whatsapp').value;
+            let alamat = document.getElementById('alamat').value;
+            let pembayaran = document.getElementById('pembayaran').value;
+
+            let total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            let pesananRingkas = cart.map(item => `- ${item.name} (x${item.qty})`).join('\n');
+
+            let noToko = "6285161284339"; 
+
+            let pesan = `Halo Korean Food Sabil, saya ingin memesan:\n\n*Nama:* ${nama}\n*No WA:* ${whatsapp}\n*Alamat:* ${alamat}\n*Pembayaran:* ${pembayaran}\n\n*Pesanan:*\n${pesananRingkas}\n\n*Total:* Rp ${total.toLocaleString('id-ID')}`;
+            
+            let urlWA = `https://wa.me/${6285161284339}?text=${encodeURIComponent(pesan)}`;
+            window.open(urlWA, '_blank');
+        }
+    </script>
+</body>
+</html>
